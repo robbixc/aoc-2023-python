@@ -22,7 +22,8 @@ jobs:
         id: changed-files-specific
         uses: tj-actions/changed-files@v45
         with:
-          files: ./*.{py}
+          files: |
+            **.py
           matrix: true
 
       - name: List all changed files
