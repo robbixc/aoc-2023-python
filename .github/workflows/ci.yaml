@@ -1,0 +1,49 @@
+name: Python Script Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  changed-files:
+    runs-on: ubuntu-latest
+    name: Get changed files
+    outputs:
+      matrix: ${{ steps.changed-files.outputs.all_changed_files }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0W
+
+      - name: Get changed files in the docs folder
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v45
+        with:
+          files: Day*/*.{py}    
+          #dir_names: false
+          matrix: true
+
+      - name: List all changed files
+        run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
+
+  run-python:
+    runs-on: ubuntu-latest
+    name: Run python
+    needs: [changed-files]
+    strategy:
+      matrix: 
+        files: ${{ fromJSON(needs.changed-files.outputs.matrix) }}
+      max-parallel: 4
+      fail-fast: false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5 
+        with:
+          python-version: '3.13'
+      - name: Run python on ${{ matrix.files }}
+        run: python ${{ matrix.files }}
