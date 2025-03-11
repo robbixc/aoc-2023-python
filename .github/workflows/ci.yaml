@@ -27,7 +27,7 @@ jobs:
           matrix: true
 
       - name: List all changed files
-        run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
+        run: echo '${{ steps.changed-files-specific.outputs.all_changed_files }}'
 
   run-python:
     runs-on: ubuntu-latest
