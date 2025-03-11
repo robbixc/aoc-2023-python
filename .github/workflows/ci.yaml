@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Get changed files
     outputs:
-      matrix: ${{ steps.changed-files.outputs.all_changed_files }}
+      matrix: ${{ steps.changed-files-specific.outputs.all_changed_files }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
