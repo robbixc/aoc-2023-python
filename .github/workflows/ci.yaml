@@ -30,7 +30,7 @@ jobs:
         run: echo '${{ steps.changed-files-specific.outputs.all_changed_files }}'
 
   run-python:
-    if: needs.changed-files.outputs.matrix != []
+    if: needs.changed-files.outputs.matrix != '[]'
     runs-on: ubuntu-latest
     name: Run python
     needs: [changed-files]
