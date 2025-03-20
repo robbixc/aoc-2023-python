@@ -7,7 +7,7 @@ path = Path("Day01/input.txt")
 with open(path, "r") as file:
     
     lista_risultati: list[int] = []
-    
+    numeri_in_lettere = {1: "one", 2:"two", 3:"three", 4:"four", 5:"five", 6:"six", 7:"seven", 8:"eight", 9:"nine"}
     for riga in file:
         print("Stiamo valutando la riga %s" % (riga))
        
