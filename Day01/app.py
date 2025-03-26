@@ -12,7 +12,19 @@ with open(path, "r") as file:
         print("Stiamo valutando la riga %s" % (riga))
        
         lista_caratteri: list[int] = []
-        
+        # iteriamo il nostro dizionario di corrispondenze tra numeri e parole
+        for chiave, valore in numeri_in_lettere.items():
+            # sostituiamo la parola con il numero nella riga e la sovrascriviamo così alla
+            # prossima iterazione la riga valutata sarà già aggiornata.
+            riga = riga.replace(valore, str(chiave))
+
+        # Questa soluzione ha ancora un difetto:
+        #    le parole sono sostituite in un ordine preciso (quello del dizionario `numeri_in_lettere`)
+        #    quindi se abbiamo una riga come `twone4oasd` alla prima iterazione la riga diventerà `tw14oasd`
+        #    e alla seconda iterazine la parola `two` all'inizio della riga non verrà trasformata in numero.
+        #    
+        #    Una possibile soluzione sarebbe individuare queste parole senza modificare la riga.
+
         #trasferisco i caratteri numerici in una lista
         for carattere in riga:
             if carattere.isnumeric(): #controlla se il carattere è un numero
