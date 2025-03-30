@@ -1,16 +1,5 @@
 from pathlib import Path
 
-def search(substring):
-    #print("Stiamo valutando la sottostringa %s" % (substring))
-    numeri_in_lettere = {1: "one", 2:"two", 3:"three", 4:"four", 5:"five", 6:"six", 7:"seven", 8:"eight", 9:"nine"}
-    for key, valore in numeri_in_lettere.items():
-       # print("Stiamo valutando la chiave %d con valore %s" % (key, valore))
-        risultato = substring.find(valore)
-        if risultato > -1:
-            return key
-    
-    return 0
-
 # Creo un oggetto Path
 path = Path("Day01/input.txt")
 
