@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import prova as p
 # Creo un oggetto Path
 path = Path("Day01/input.txt")
 
@@ -12,21 +12,20 @@ with open(path, "r") as file:
         print("Stiamo valutando la riga %s" % (riga))
        
         lista_caratteri: list[int] = []
-        # iteriamo il nostro dizionario di corrispondenze tra numeri e parole
-        for chiave, valore in numeri_in_lettere.items():
-            # sostituiamo la parola con il numero nella riga e la sovrascriviamo così alla
-            # prossima iterazione la riga valutata sarà già aggiornata.
-            riga = riga.replace(valore, str(chiave))
+        
+        """Dentro questa funzione, che puoi vedere sul nuovo file che ho creato, c'è un dizionario che racchiude tutte 
+        le eccezioni possibili perche purtroppo non sono riuscito ad automatizzare il processo quindi le ho scritte a 
+        mano ;) 
+        
+        questa soluzione dovrebbe funzionare poi va controllata"""
+        
+        #chiamo la funzione per rimpiazzare i numeri
+        nuova_riga = p.replace_words(riga)
 
-        # Questa soluzione ha ancora un difetto:
-        #    le parole sono sostituite in un ordine preciso (quello del dizionario `numeri_in_lettere`)
-        #    quindi se abbiamo una riga come `twone4oasd` alla prima iterazione la riga diventerà `tw14oasd`
-        #    e alla seconda iterazine la parola `two` all'inizio della riga non verrà trasformata in numero.
-        #    
-        #    Una possibile soluzione sarebbe individuare queste parole senza modificare la riga.
+        print("riga rielaborata = %s" % (nuova_riga))
 
         #trasferisco i caratteri numerici in una lista
-        for carattere in riga:
+        for carattere in nuova_riga:
             if carattere.isnumeric(): #controlla se il carattere è un numero
                 carattere = int(carattere)
                 lista_caratteri.append(carattere)
