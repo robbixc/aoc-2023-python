@@ -1,5 +1,3 @@
-from pathlib import Path
-
 def replace_words(text):
     """Questa funzione prende una stringa a fa due controlli, il primo per rivelare parole strane, l'altro per
     per controllare i numeri normali, ed ha l'obbiettivo di scambiare i numeri strani in numeri ed i numeri normali in
