@@ -29,7 +29,6 @@ def get_information(text: str) -> dict[int, str]:
     for word in text.split():
         pattern1 = r"^[0-5]?\d$"  
         pattern2 = r"red|blue|green"  
-
         if re.match(pattern1, word):
             number = int(word)
 
@@ -45,5 +44,4 @@ def get_information(text: str) -> dict[int, str]:
                     existing_color.append(color)
             else:
                 dizionario[number] = color
-
     return dizionario

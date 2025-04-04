@@ -32,7 +32,11 @@ with open(path, "r") as file:
 
     """allora io ho provato a cancellare i game id dove le partite venivano perse ma non ci sono riuscito benissimo
     credo che ci siano ancora degli errori poi ce da dare una controllata"""
-    for game_id in lista_ids:
+    for game_id in lista_ids:      
+        # non capisco questo controllo, nella lista partite così come l'hai composto le chiavi sono i numeri di cubi
+        # e i valori sono i colori... quindi al massimo dobbiamo controllare i numeri dei cubi.
+        # Poi il range non corrisponde a quanto scritto nelle istruzioni. Dobbiamo controllare che non vengano mai estratti
+        # più di 12 cubi rossi oppure 13 cubi verdi oppure 14 cubi blu, altrimenti la partita non è valida
         if lista_partite[game_id].values() in range(15,21):
             lista_partite.pop(game_id)
         else:
