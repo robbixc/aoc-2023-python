@@ -24,11 +24,9 @@ with open(path, "r") as file:
         game_id = fd.get_game_id(riga)
         lista_ids.append(game_id)
 
-        riga_nuova = fd.remove(riga)
-        lista_partita: dict[int, str] = fd.get_information(riga_nuova)
-        print(lista_partita)
+        lista_partite[game_id] = fd.get_information(riga)
+        print(lista_partite[game_id])
 
-        lista_partite[game_id] = lista_partita
 
     """allora io ho provato a cancellare i game id dove le partite venivano perse ma non ci sono riuscito benissimo
     credo che ci siano ancora degli errori poi ce da dare una controllata"""
