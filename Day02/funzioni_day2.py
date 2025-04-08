@@ -19,31 +19,18 @@ def remove(text: str) -> str:
     new_text = re.sub(pattern, "", text)
     return new_text
 
-def get_information(text: str) -> dict[int, str]:
+def get_information(text: str) -> dict[int, list[int]]:
     """Questa funzione analizza la stringa alla ricerca di due parametri di cui uno e un numero e l'altro il nome
-    di un colore, poi una volta trovati la funzione crea un dizionario con chiave il numero e come valore la parola\n
+    di un colore, poi una volta trovati la funzione crea un dizionario con chiave il colo9re e come valore la lista dei numeri\n
     :param: una stringa di testo
     :return: un dizionari completo per ogni istanza nella stringa"""
-    dizionario: dict[int, str] = {}
-
-    for word in text.split():
-        pattern1 = r"^[0-5]?\d$"  
-        pattern2 = r"red|blue|green"  
-
-        if re.match(pattern1, word):
-            number = int(word)
-
-        elif re.match(pattern2, word):
-            color = word
-
-            if number in dizionario:
-                existing_color = dizionario[number]  
-
-                if not isinstance(existing_color, list):
-                    dizionario[number] = [existing_color, color]
-                else:
-                    existing_color.append(color)
-            else:
-                dizionario[number] = color
-
-    return dizionario
+    
+    dizionario: dict[str, list[int]] = {}
+    megapattern = r"((?P<numero>[0-9]{1,2})+\s(?P<colore>[a-z]+),?)+"
+    matches = re.findall(megapattern, text)
+    for match in matches:
+        if match[2] in dizionario:
+            dizionario[match[2]].append(int(match[1]))
+        else:
+            dizionario[match[2]] = list([int(match[1])])
+    return dizionario 
