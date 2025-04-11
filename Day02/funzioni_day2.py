@@ -44,9 +44,9 @@ def filter_game_id(partite: dict[int, dict[str, list[int]]]) -> list[int]:
     :return: una lista di game id che soddisfano le condizioni"""
     lista_ids_coretti = []
 
-    lista1 = set(range(12, 21))
-    lista2 = set(range(13, 21))
-    lista3 = set(range(14, 21))
+    lista1 = set(range(13, 21))
+    lista2 = set(range(14, 21))
+    lista3 = set(range(15, 21))
 
     for game_id, colori in partite.items():
         if colori: # Verifica se il dizionario non è vuoto
