@@ -50,11 +50,11 @@ def filter_game_id(partite: dict[int, dict[str, list[int]]]) -> list[int]:
 
     for game_id, colori in partite.items():
         if colori: # Verifica se il dizionario non è vuoto
-            if any(value in lista1 for value in colori.get("red", [])):
+            if any(value > 12 for value in colori.get("red", [])):
                 continue
-            if any(value in lista2 for value in colori.get("green", [])):
+            if any(value > 13 for value in colori.get("green", [])):
                 continue
-            if any(value in lista3 for value in colori.get("blue", [])):
+            if any(value > 14 for value in colori.get("blue", [])):
                 continue
         
         lista_ids_coretti.append(game_id)
